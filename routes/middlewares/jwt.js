@@ -7,10 +7,10 @@ const protect = async (req, res, next) => {
             //Get token from headr
             token = req.headers.authorization.split(" ")[1]
             // verify token
-            const decoded = jwt.verify(token, process.env.JWT_SECRET)
+            const decoded = jwt.verify(token, process.env.SECRETKEY)
             // Get usereauth from the token
-            req.users = await users.findById(decoded.id).select("_password")
-            next()
+            // req.users = await users.findById(decoded.id).select("-password")
+           
         } catch (error) {
             console.log(error)
             res.status(401)
